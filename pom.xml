@@ -18,12 +18,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.8</version> <!-- Versi terbaru yang aman -->
+        <version>3.2.8</version> 
     </parent>
 
     <dependencies>
 
-        <!-- Web Starter dengan exclusion untuk security -->
+        <!-- Web Starter untuk security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -72,7 +72,7 @@
             <version>0.11.5</version>
         </dependency>
 
-        <!-- JWT Implementation (jika dibutuhkan untuk parsing/validating JWT) -->
+        <!-- JWT Implementation -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
