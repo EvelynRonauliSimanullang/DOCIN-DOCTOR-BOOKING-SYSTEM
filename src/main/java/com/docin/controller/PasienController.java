@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/patients")
 @RequiredArgsConstructor
@@ -14,13 +16,13 @@ public class PasienController {
     private final PasienService pasienService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody PasienRequest request) {
+    public ResponseEntity<String> register(@RequestBody @Valid PasienRequest request) {
         pasienService.register(request);
         return ResponseEntity.ok("Registration successful");
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<String> login(@Valid @RequestBody LoginRequest request) {
         return ResponseEntity.ok(pasienService.login(request));
     }
 
@@ -36,7 +38,7 @@ public class PasienController {
     }
 
     @PostMapping("/reset-password")
-    public ResponseEntity<String> resetPassword(@RequestBody ResetPasswordRequest request) {
+    public ResponseEntity<String> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
         return ResponseEntity.ok(pasienService.resetPassword(request));
     }
 }

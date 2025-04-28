@@ -18,12 +18,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.2.8</version> 
+        <version>3.2.8</version> <!-- Versi terbaru yang aman -->
     </parent>
 
     <dependencies>
 
-        <!-- Web Starter untuk security -->
+        <!-- Web Starter dengan exclusion untuk security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -72,7 +72,7 @@
             <version>0.11.5</version>
         </dependency>
 
-        <!-- JWT Implementation -->
+        <!-- JWT Implementation (jika dibutuhkan untuk parsing/validating JWT) -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-impl</artifactId>
@@ -84,6 +84,20 @@
             <artifactId>jjwt-jackson</artifactId>
             <version>0.11.5</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Jakarta Bean Validation (untuk anotasi validasi seperti @NotBlank, @NotNull, dll) -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        <!-- Hibernate Validator (implementasi Jakarta Validation) -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>6.2.0.Final</version>
         </dependency>
 
         <!-- Testing -->
