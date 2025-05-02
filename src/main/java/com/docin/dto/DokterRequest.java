@@ -9,8 +9,8 @@ import lombok.*;
 @Builder
 public class DokterRequest {
 
-    @NotBlank(message = "Name is required")
-    private String name;
+    @NotBlank(message = "Full name is required")
+    private String fullName;
 
     @NotBlank(message = "Specialization is required")
     private String specialization;
@@ -20,4 +20,11 @@ public class DokterRequest {
 
     @NotBlank(message = "Email is required")
     private String email;
+
+    @NotBlank(message = "Username is required")
+    private String username;
+
+    @NotBlank(message = "Password is required")
+    private String password;
 }
+

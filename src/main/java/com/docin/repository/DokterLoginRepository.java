@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface DokterRepository extends JpaRepository<Dokter, Long> {
-    Optional<Dokter> findByUsername(String username);
+public interface DokterLoginRepository extends JpaRepository<Dokter, Long> {
+    Optional<Dokter> findByUsername(String username); // <--- untuk login
 }
-

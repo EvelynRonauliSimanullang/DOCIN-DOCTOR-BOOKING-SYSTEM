@@ -2,10 +2,11 @@ package com.docin.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
 @Table(name = "dokter")
@@ -13,28 +14,46 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Dokter {
+public class Dokter implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    private String fullName;        // ✅ Nama lengkap dokter
+    private String spesialisasi;    // ✅ Konsisten dengan DTO (ubah dari "specialization")
+    private String phoneNumber;     // ✅ No HP
+    private String email;           // ✅ Email
+
+    @Column(unique = true, nullable = false)
+    private String username;        // ✅ Username untuk login
 
     @Column(nullable = false)
-    private String specialization;
+    private String password;        // ✅ Password untuk login
 
-    @Column(nullable = false, length = 20)
-    private String phoneNumber;
+    // ✅ Implementasi UserDetails (wajib jika pakai Spring Security)
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Collections.emptyList(); // belum pakai ROLE
+    }
 
-    @Column(nullable = false)
-    private String email;
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-    @CreationTimestamp
-    @Column(updatable = false)
-    private LocalDateTime createdAt;
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

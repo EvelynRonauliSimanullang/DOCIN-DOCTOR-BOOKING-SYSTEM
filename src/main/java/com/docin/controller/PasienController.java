@@ -5,6 +5,7 @@ import com.docin.service.PasienService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.docin.service.DokterService;
 
 import jakarta.validation.Valid;
 
@@ -14,6 +15,7 @@ import jakarta.validation.Valid;
 public class PasienController {
 
     private final PasienService pasienService;
+    private final DokterService dokterService;
 
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody @Valid PasienRequest request) {
@@ -40,5 +42,10 @@ public class PasienController {
     @PostMapping("/reset-password")
     public ResponseEntity<String> resetPassword(@Valid @RequestBody ResetPasswordRequest request) {
         return ResponseEntity.ok(pasienService.resetPassword(request));
+    }
+
+    @GetMapping("/dokters/{id}/kontak")
+    public ResponseEntity<DokterKontakResponse> getKontakDokter(@PathVariable Long id) {
+        return ResponseEntity.ok(dokterService.getKontakDokter(id)); // ✅ perbaikan
     }
 }

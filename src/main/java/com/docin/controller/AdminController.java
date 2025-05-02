@@ -1,6 +1,7 @@
 package com.docin.controller;
 
 import com.docin.dto.AdminLoginRequest;
+import com.docin.dto.AdminResponse;
 import com.docin.dto.BaseResponse;
 import com.docin.service.AdminService;
 import jakarta.validation.Valid;
@@ -16,13 +17,13 @@ public class AdminController {
     private final AdminService adminService;
 
     @PostMapping("/login")
-    public ResponseEntity<BaseResponse<String>> login(@RequestBody @Valid AdminLoginRequest request) {
-        String token = adminService.login(request);
+    public ResponseEntity<BaseResponse<AdminResponse>> login(@RequestBody @Valid AdminLoginRequest request) {
+        AdminResponse response = adminService.login(request);
         return ResponseEntity.ok(
-                BaseResponse.<String>builder()
+                BaseResponse.<AdminResponse>builder()
                         .success(true)
-                        .message("Login Admin successful!")
-                        .data(token)
+                        .message("Login admin berhasil")
+                        .data(response)
                         .build()
         );
     }

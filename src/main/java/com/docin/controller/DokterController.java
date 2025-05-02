@@ -1,8 +1,6 @@
 package com.docin.controller;
 
-import com.docin.dto.BaseResponse;
-import com.docin.dto.DokterRequest;
-import com.docin.dto.DokterResponse;
+import com.docin.dto.*;
 import com.docin.service.DokterService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,63 +16,35 @@ public class DokterController {
 
     private final DokterService dokterService;
 
-    @PostMapping
-    public ResponseEntity<BaseResponse<DokterResponse>> createDokter(@RequestBody @Valid DokterRequest request) {
-        DokterResponse dokter = dokterService.createDokter(request);
-        return ResponseEntity.ok(
-                BaseResponse.<DokterResponse>builder()
-                        .success(true)
-                        .message("Dokter created successfully")
-                        .data(dokter)
-                        .build()
-        );
+    @PostMapping("/register")
+    public ResponseEntity<DokterResponse> register(@RequestBody @Valid DokterRequest request) {
+        return ResponseEntity.ok(dokterService.createDokter(request));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<DokterLoginResponse> login(@RequestBody @Valid DokterLoginRequest request) {
+        return ResponseEntity.ok(dokterService.login(request));
     }
 
     @GetMapping
-    public ResponseEntity<BaseResponse<List<DokterResponse>>> getAllDokters() {
-        List<DokterResponse> dokters = dokterService.getAllDokter();
-        return ResponseEntity.ok(
-                BaseResponse.<List<DokterResponse>>builder()
-                        .success(true)
-                        .message("List of all doctors")
-                        .data(dokters)
-                        .build()
-        );
+    public ResponseEntity<List<DokterResponse>> getAllDokters() {
+        return ResponseEntity.ok(dokterService.getAllDokter());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BaseResponse<DokterResponse>> getDokterById(@PathVariable Long id) {
-        DokterResponse dokter = dokterService.getDokterById(id);
-        return ResponseEntity.ok(
-                BaseResponse.<DokterResponse>builder()
-                        .success(true)
-                        .message("Dokter found")
-                        .data(dokter)
-                        .build()
-        );
+    public ResponseEntity<DokterResponse> getDokterById(@PathVariable Long id) {
+        return ResponseEntity.ok(dokterService.getDokterById(id));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BaseResponse<DokterResponse>> updateDokter(@PathVariable Long id, @RequestBody @Valid DokterRequest request) {
-        DokterResponse dokter = dokterService.updateDokter(id, request);
-        return ResponseEntity.ok(
-                BaseResponse.<DokterResponse>builder()
-                        .success(true)
-                        .message("Dokter updated successfully")
-                        .data(dokter)
-                        .build()
-        );
+    public ResponseEntity<DokterResponse> updateDokter(@PathVariable Long id,
+                                                       @RequestBody @Valid DokterRequest request) {
+        return ResponseEntity.ok(dokterService.updateDokter(id, request));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<BaseResponse<Void>> deleteDokter(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteDokter(@PathVariable Long id) {
         dokterService.deleteDokter(id);
-        return ResponseEntity.ok(
-                BaseResponse.<Void>builder()
-                        .success(true)
-                        .message("Dokter deleted successfully")
-                        .data(null)
-                        .build()
-        );
+        return ResponseEntity.noContent().build();
     }
 }

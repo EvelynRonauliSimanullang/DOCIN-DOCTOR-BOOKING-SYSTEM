@@ -27,6 +27,10 @@ public class Pasien implements UserDetails {
     private String password;
     private String otp;
 
+    private String fullName;
+    private String email;
+    private String phoneNumber;
+
     @Column(name = "created_at", updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -35,7 +39,7 @@ public class Pasien implements UserDetails {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    // Tambahan untuk UserDetails
+    // Untuk UserDetails (autentikasi Spring Security)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList(); // belum pakai role
