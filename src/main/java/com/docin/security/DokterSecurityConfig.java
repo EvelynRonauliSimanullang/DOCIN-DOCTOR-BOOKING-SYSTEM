@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
-@Order(3) // pastikan tidak bentrok dengan yang lain
+@Order(3) 
 public class DokterSecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
