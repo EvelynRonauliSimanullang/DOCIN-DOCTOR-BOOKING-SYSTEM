@@ -39,7 +39,7 @@ public class Pasien implements UserDetails {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    // Untuk UserDetails (autentikasi Spring Security)
+    // Untuk UserDetails 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList(); // belum pakai role
