@@ -20,18 +20,18 @@ public class Dokter implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String fullName;        // ✅ Nama lengkap dokter
-    private String spesialisasi;    // ✅ Konsisten dengan DTO (ubah dari "specialization")
-    private String phoneNumber;     // ✅ No HP
-    private String email;           // ✅ Email
+    private String fullName;        // Nama lengkap dokter
+    private String spesialisasi;    
+    private String phoneNumber;     // No HP
+    private String email;           // Email
 
     @Column(unique = true, nullable = false)
-    private String username;        // ✅ Username untuk login
+    private String username;        // Username untuk login
 
     @Column(nullable = false)
-    private String password;        // ✅ Password untuk login
+    private String password;        //Password untuk login
 
-    // ✅ Implementasi UserDetails (wajib jika pakai Spring Security)
+    //  Implementasi UserDetails 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList(); // belum pakai ROLE
