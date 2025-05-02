@@ -20,8 +20,8 @@ public class DokterBookingController {
 
     @GetMapping
     public ResponseEntity<BaseResponse<List<DokterBookingResponse>>> getMyBookings(@AuthenticationPrincipal Principal principal) {
-        // Ambil ID dokter dari principal (atau sesuaikan jika kamu menyimpan user ID di token)
-        Long dokterId = Long.parseLong(principal.getName()); // Asumsikan username = ID
+
+        Long dokterId = Long.parseLong(principal.getName()); 
         List<DokterBookingResponse> bookings = dokterBookingService.getBookingsByDokter(dokterId);
         return ResponseEntity.ok(
                 BaseResponse.<List<DokterBookingResponse>>builder()
